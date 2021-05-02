@@ -316,6 +316,19 @@
     
 
 </div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <!-- <li><a href="auth">Authentification</a></li>
+      <li><a href="appareils">Appareils</a></li> -->
+      <!-- <li><a routerLink="auth">Authentification</a></li>
+      <li><a routerLink="appareils">Appareils</a></li> -->
+      <li routerLinkActive="active"><a routerLink="auth">Authentification</a></li>
+      <li routerLinkActive="active" ><a routerLink="appareils">Appareils</a></li>
+      
+    </ul>
+  </div>
+</nav>
 <div class="content">
  <!--<app-appareil-view></app-appareil-view>--> 
   <router-outlet></router-outlet>
