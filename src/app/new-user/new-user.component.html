@@ -19,7 +19,28 @@
                 <option value="Pepsi">Pepsi</option>
             </select>
         </div>
+        
+        <!-- code du tutorial vidéo 2h53 - mais qui ne fonctionne pas
+        <div formArrayName="hobbies">
+            <h3>Vos Hobbies</h3>
+            <div class="form-group" *ngFor="let hobbyControl of getHobbies().controls; let i = index">
+                <input type="text" class="form-control" [formControlName]="i">
+            </div>
+            <button class="btn btn-success" (click)="onAddHobby()">Ajouter un hobby</button>
+        </div> -->
         <button class="btn btn-primary" type="submit" [disabled]="userForm.invalid">Soumettre </button>
+   </form>
+   <!-- j'ai créé un autre formulaire ici pour pouvoir ajouter le hobby 
+    contrairement au tuto 2h53
+     -->
+    <form [formGroup]="userForm">
+        <div formArrayName="hobbies">
+            <h3>Vos Hobbies</h3>
+            <div class="form-group" *ngFor="let hobbyControl of getHobbies().controls; let i = index">
+                <input type="text" class="form-control" [formControlName]="i">
+            </div>
+            <button class="btn btn-success" (click)="onAddHobby()">Ajouter un hobby</button>
+        </div>
     </form>
 
 </div>
