@@ -7,23 +7,25 @@ export class AppareilService {
 
   appareilSubject = new Subject<any[]>(); // les objets émis seront de type any[]
 
-  private appareils = [
-    {
-      id: 1,
-      name: 'Télévision',
-      status: 'éteint'
-    },
-    {
-      id: 2,
-      name: 'Hifi',
-      status: 'allumé'
-    },
-    {
-      id: 3,
-      name: 'Lave-vaisselle',
-      status: 'éteint'
-    }
-  ];
+  private appareils = [];
+  // Initialisation ci-dessous (tant qu'on n'avait pas le service de sauvegarde sur firebase)
+  // private appareils = [
+  //   {
+  //     id: 1,
+  //     name: 'Télévision',
+  //     status: 'éteint'
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'Hifi',
+  //     status: 'allumé'
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'Lave-vaisselle',
+  //     status: 'éteint'
+  //   }
+  // ];
 
   constructor(private httpClient: HttpClient) {
 
@@ -88,6 +90,20 @@ export class AppareilService {
         },
         (error) => {
           console.log('Erreur de sauvegarde ! : ' + error);
+        }
+      );
+  }
+
+  getAppareilsFromServer() {
+    this.httpClient.get<any[]>(
+      'https://http-client-demo-mpa-default-rtdb.europe-west1.firebasedatabase.app/appareils.json')
+      .subscribe(
+        (response) => {
+          this.appareils = response;
+          this.emitAppareilSubject(); // A NE PAS OUBLIER
+        },
+        (error) => {
+          console.log('Erreur de chargement ! : ' + error);
         }
       );
   }
